@@ -54,17 +54,17 @@ resource "aws_instance" "oxla-bastion-host" {
   vpc_security_group_ids = [aws_security_group.oxla-ec2-instance-security-group.id]
 
 #this scripts executes the jump hosting access.
-  provisioner "file" {
-    source      = "sample-script.sh"
-    destination = "/tmp/script.sh"
-  }
+  # provisioner "file" {
+  #   source      = "sample-script.sh"
+  #   destination = "/tmp/script.sh"
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/sample-script.sh",
-      "/tmp/sample-script.sh args",
-    ]
-  }
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "chmod +x /tmp/sample-script.sh",
+  #     "/tmp/sample-script.sh args",
+  #   ]
+  # }
 
   tags = {
     Name        = "oxla-server"
