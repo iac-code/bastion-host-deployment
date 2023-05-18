@@ -14,7 +14,7 @@ resource "aws_subnet" "oxla-private-subnet" {
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "oxla-public-subnet"
+    Name = "oxla-private-subnet"
   }
 }
 
@@ -45,10 +45,10 @@ resource "aws_route_table_association" "oxla-route-table-association" {
 resource "aws_route_table" "oxla-private-route-table" {
   vpc_id = aws_vpc.oxla-vpc.id
 
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.oxla-internet-gateway.id
-  }
+  # route {
+  #   cidr_block = "10.0.0.0/16"
+  #   gateway_id = aws_internet_gateway.oxla-internet-gateway.id
+  # }
 
   tags = {
     Name = "oxla-private-route-table"
