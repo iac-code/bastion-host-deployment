@@ -5,5 +5,6 @@ output "associate_public_ip_address" {
 
 output "aws_key_pair" {
     sensitive = true
+    value = [aws_key_pair.oxla-keypair.public_key ]
   
 }
