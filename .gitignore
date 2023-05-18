@@ -1,0 +1,4 @@
+auth.tfvars
+oxla-demo-bastion-keys.pub
+.terraform*
+.terraform/
