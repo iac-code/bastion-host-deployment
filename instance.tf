@@ -35,7 +35,7 @@ resource "aws_key_pair" "oxla-keypair" {
 resource "aws_instance" "oxla-bastion-host" {
   ami                                  =  data.aws_ami.ubuntu.id
   instance_type                        = "t2.micro"                       #free tier eligible
-  availability_zone                    = "us-east-1b"
+  availability_zone                    = "us-east-1a"
   instance_initiated_shutdown_behavior = "terminate"
   key_name                             = aws_key_pair.oxla-keypair.id
   monitoring                           = true
