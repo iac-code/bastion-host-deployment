@@ -2,4 +2,4 @@ auth.*.tfvars
 oxla-demo-bastion-keys.pub
 .terraform*
 .terraform/
-terraform.tf.state
+terraform.tfstate
