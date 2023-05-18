@@ -29,7 +29,7 @@ resource "aws_route_table" "oxla-route-table" {
 
   route {
     ipv6_cidr_block        = "::/0"
-    egress_only_gateway_id = aws_egress_only_internet_gateway.oxla-internet-gateway.id
+    egress_only_gateway_id = "0.0.0.0/::0"
   }
 
   tags = {
@@ -61,7 +61,7 @@ resource "aws_route_table_association" "oxla-private-route-table-association" {
 }
 
 resource "aws_internet_gateway" "oxla-internet-gateway" {
-  vpc_id = aws_vpc.oxla-vpc
+  vpc_id = aws_vpc.oxla-vpc.id
 
   tags = {
     Name = "oxla-internet-gateway"
@@ -70,7 +70,7 @@ resource "aws_internet_gateway" "oxla-internet-gateway" {
 
 resource "aws_internet_gateway_attachment" "oxla-internet-gateway-attachment" {
   internet_gateway_id = aws_internet_gateway.oxla-internet-gateway.id
-  vpc_id              = aws_vpc.oxla-vpc
+  vpc_id              = aws_vpc.oxla-vpc.id
 }
 
 resource "aws_security_group" "oxla-bastion-security-group" {

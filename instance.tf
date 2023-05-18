@@ -1,15 +1,15 @@
 resource "aws_instance" "oxla-ec2-instance" {
-  ami                                  = data.aws_ami.ubuntu
+  ami                                  = data.aws_ami.ubuntu.id
   instance_type                        = "t2.micro"                       #free tier eligible
   availability_zone                    = "us-east-1a"
   instance_initiated_shutdown_behavior = "terminate"
   #key_name                             = aws_key_pair.oxla-keypair.id
   monitoring                           = true
-  subnet_id                            = aws_subnet.oxla-private-subnet
+  subnet_id                            = aws_subnet.oxla-private-subnet.id
   tenancy                              = "default"
   ebs_optimized                        = false
   associate_public_ip_address          = false
-  iam_instance_profile                 = aws_iam_instance_profile.oxla-instance-profile
+  iam_instance_profile                 = aws_iam_instance_profile.oxla-instance-profile.id
 
   ebs_block_device {
     device_name = "/dev/sda1"
@@ -28,12 +28,12 @@ resource "aws_instance" "oxla-ec2-instance" {
 
 resource "aws_key_pair" "oxla-keypair" {
   key_name   = "oxla-keypair"
-  public_key = file(oxla-demo-bastion-keys.pub)   #" "
+  public_key = file("./oxla-demo-bastion-keys.pub")   #" "
 }
 
 
 resource "aws_instance" "oxla-bastion-host" {
-  ami                                  =  data.aws_ami.ubuntu
+  ami                                  =  data.aws_ami.ubuntu.id
   instance_type                        = "t2.micro"                       #free tier eligible
   availability_zone                    = "us-east-1b"
   instance_initiated_shutdown_behavior = "terminate"
